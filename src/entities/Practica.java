@@ -1,16 +1,11 @@
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+package entities;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "practica")
 public class Practica {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPractica;
@@ -23,16 +18,21 @@ public class Practica {
     private Docente docente;
 
     @ManyToOne
-    @JoinTable(name = "estudiante_practica", joinColumns = @JoinColumn(name = "id_practica"), inverseJoinColumns = @JoinColumn(name = "id_estudiante"))
-    private List<Estudiante> estudiantes;
+    @JoinColumn(name = "id_servicio")
+    private ServicioHospitalario servicioHospitalario;
 
     public Practica() {
     }
 
-    public Practica(int mes, int anio, Docente docente) {
+    public Practica(int mes,
+                    int anio,
+                    Docente docente,
+                    ServicioHospitalario servicioHospitalario) {
+
         this.mes = mes;
         this.anio = anio;
         this.docente = docente;
+        this.servicioHospitalario = servicioHospitalario;
     }
 
     public Long getIdPractica() {
@@ -67,11 +67,11 @@ public class Practica {
         this.docente = docente;
     }
 
-    public List<Estudiante> getEstudiantes() {
-        return estudiantes;
+    public ServicioHospitalario getServicioHospitalario() {
+        return servicioHospitalario;
     }
 
-    public void setEstudiantes(List<Estudiante> estudiantes) {
-        this.estudiantes = estudiantes;
+    public void setServicioHospitalario(ServicioHospitalario servicioHospitalario) {
+        this.servicioHospitalario = servicioHospitalario;
     }
 }

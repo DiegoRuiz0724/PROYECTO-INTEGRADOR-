@@ -1,0 +1,5 @@
+public enum TipoTutor {
+DOCENTE,
+JEFE_SERVICIO,
+COORDINADOR
+}
